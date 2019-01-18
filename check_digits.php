@@ -21,7 +21,7 @@ function generate_ref($ent, $ref_id, $val) {
 	$ctrl_num = $ent.$ref_id.$val_tmp; // concatenar os 3 parametros
 
 	if(strlen($ctrl_num) != 20)
-		return ['error' => 1, 'message' => 'comprimento num de controlo errado'];
+		return ['error' => 1, 'message' => 'comprimento do num de controlo errado'];
 
 	$prods = 0;
 	foreach (str_split($ctrl_num) as $key => $value) {

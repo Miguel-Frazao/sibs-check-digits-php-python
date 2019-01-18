@@ -21,7 +21,7 @@ def generate_ref(ent, ref_id, val):
 	ctrl_num = '{}{}{}'.format(ent, ref_id, val_tmp)
 
 	if(len(ctrl_num) != 20):
-		return {'error': 1, 'message': 'comprimento num de controlo diferent dos pesos (20)'}
+		return {'error': 1, 'message': 'comprimento do num de controlo errado'}
 
 	prods = 0;
 	for key, value in enumerate(ctrl_num):
