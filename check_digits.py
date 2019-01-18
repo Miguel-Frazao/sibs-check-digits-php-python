@@ -14,7 +14,7 @@ def generate_ref(ent, ref_id, val):
 	val_display = '{0:.2f}'.format(val)
 	# remover decimal e preencher com zeros a esquerda para que tenha 8 chars
 	val_tmp = val_display.replace('.', '').zfill(8)
-	
+
 	if(not val_tmp.isnumeric() or 1  > val > 1000000):
 		return {'error': 1, 'message': 'Valor a pagar inválido'}
 
