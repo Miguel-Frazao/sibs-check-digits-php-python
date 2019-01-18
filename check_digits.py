@@ -18,7 +18,7 @@ def generate_ref(ent, ref_id, val):
 	ctrl_num = '{}{}{}'.format(ent, ref_id, val_tmp)
 
 	if(len(ctrl_num) != len(weights)-2):
-		return 'ERR: Comprimentos divergem';
+		return False
 
 	prods = 0;
 	for key, value in enumerate(ctrl_num):
