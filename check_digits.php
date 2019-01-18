@@ -29,7 +29,7 @@ function generate_ref($ent, $ref_id, $val) {
 
     return ['ENT' => $ent, 'VAL' => number_format($val, 2, ',', ''), 'REF' => $ref];
 }
-$ent = '11687';
-$ref_id = '4854490';
-$val = 421.00;
+$ent = '90150';
+$ref_id = '1231234';
+$val = 432.11;
 print_r(generate_ref($ent, $ref_id, $val)); // Array ( [ENT] => 90150 [VAL] => 432,11 [REF] => 123123451 )
