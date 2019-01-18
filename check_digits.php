@@ -9,6 +9,10 @@
  */
  
 function generate_ref($ent, $ref_id, $val) {
+
+	if(!is_numeric($val) || $val > 1000000 || $val < 1)
+        return ['error' => 1, 'message' => 'Valor a pagar inválido'];
+    
     $weights = [51,73,17,89,38,62,45,53,15,50,5,49,34,81,76,27,90,9,30,3,10,1];
     
     // remover decimal e preencher com zeros a esquerda para que tenha 8 chars
@@ -16,8 +20,8 @@ function generate_ref($ent, $ref_id, $val) {
     
     $ctrl_num = $ent.$ref_id.$val_tmp; // concatenar os 3 parametros
 
-    if(strlen($ctrl_num) != count($weights)-2)
-		return false;
+    if(strlen($ctrl_num) != 20)
+        return ['error' => 1, 'message' => 'comprimento num de controlo errado'];
 
     $prods = 0;
     foreach (str_split($ctrl_num) as $key => $value) {
@@ -27,9 +31,9 @@ function generate_ref($ent, $ref_id, $val) {
     $check_digits = str_pad(98-($prods%97), 2, '0', STR_PAD_LEFT);
     $ref = $ref_id.$check_digits;
 
-    return ['ENT' => $ent, 'VAL' => number_format($val, 2, ',', ''), 'REF' => $ref];
+    return ['error' => 0, 'message' => ['ENT' => $ent, 'VAL' => number_format($val, 2, ',', ''), 'REF' => $ref]];
 }
 $ent = '90150';
 $ref_id = '1231234';
 $val = 432.11;
-print_r(generate_ref($ent, $ref_id, $val)); // Array ( [ENT] => 90150 [VAL] => 432,11 [REF] => 123123451 )
+print_r(generate_ref($ent, $ref_id, $val)); // Array ( [error] => 0 [message] => Array ( [ENT] => 90150 [VAL] => 432,11 [REF] => 123123451 ) )
