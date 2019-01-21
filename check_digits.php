@@ -24,8 +24,8 @@ function generate_ref($ent, $ref_id, $val) {
 
 	$prods = 0;
 	for ($i = 0; $i < 20; $i++) {
-        $prods += substr($ctrl_num, 19-$i, 1)*$weights[$i]; // produto do num na posicao x pelo correspondente nos $weights revertido
-    }
+		$prods += substr($ctrl_num, 19-$i, 1)*$weights[$i]; // produto do num na posicao x pelo correspondente nos $weights revertido
+	}
     
 	// obrigar a ter sempre dois digitos, colocar zero a esquerda se o resultado tiver apenas um digito
 	$check_digits = str_pad(98-($prods%97), 2, '0', STR_PAD_LEFT);
