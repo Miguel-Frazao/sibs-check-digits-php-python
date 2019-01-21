@@ -13,7 +13,7 @@ function generate_ref($ent, $ref_id, $val) {
 	if(!is_numeric($val) || $val > 1000000 || $val < 1)
 		return ['error' => 1, 'message' => 'Valor a pagar inválido'];
 
-	$weights = [3, 30, 9, 90, 27, 76, 81, 34, 49, 5, 50, 15, 53, 45, 62, 38, 89, 17, 73, 51];
+	$weights = [51, 73, 17, 89, 38, 62, 45, 53, 15, 50, 5, 49, 34, 81, 76, 27, 90, 9, 30, 3];
 
 	// remover decimal e preencher com zeros a esquerda para que tenha 8 chars
 	$val_tmp = str_pad(number_format($val, 2, "", ""), 8, '0', STR_PAD_LEFT);
@@ -24,7 +24,7 @@ function generate_ref($ent, $ref_id, $val) {
 
 	$prods = 0;
 	for ($i = 0; $i < 20; $i++) {
-		$prods += substr($ctrl_num, 19-$i, 1)*$weights[$i]; // produto do num na posicao x pelo correspondente nos $weights revertido
+		$prods += substr($ctrl_num, $i, 1)*$weights[$i]; // produto do num na posicao x pelo correspondente nos $weights
 	}
     
 	// obrigar a ter sempre dois digitos, colocar zero a esquerda se o resultado tiver apenas um digito
@@ -33,6 +33,7 @@ function generate_ref($ent, $ref_id, $val) {
 
 	return ['error' => 0, 'message' => ['ENT' => $ent, 'VAL' => number_format($val, 2, ',', ''), 'REF' => $ref]];
 }
+
 $ent = '90150';
 $ref_id = '1231234';
 $val = 432.11;
