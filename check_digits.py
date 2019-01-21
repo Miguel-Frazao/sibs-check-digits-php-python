@@ -15,12 +15,12 @@ def generate_ref(ent, ref_id, val):
 	val_display = '{:.2f}'.format(val)
 	# remover decimal e preencher com zeros à esquerda para que tenha 8 chars
 	val_tmp = val_display.replace('.', '').zfill(8)
-	if(not val_tmp.isnumeric() or 1  > val > 1000000):
+	if(not val_tmp.isnumeric() or not 1 < val < 99999.99):
 		return {'error': 1, 'message': 'Valor a pagar inválido'}
 
 	base_num = '{}{}{}'.format(ent, ref_id, val_tmp)
 	if(len(base_num) != 20):
-		return {'error': 1, 'message': 'comprimento do num de controlo errado'}
+		return {'error': 1, 'message': 'comprimento do num base errado'}
 
 	prods = 0
 	for val1, val2 in zip(weights, map(int, base_num)): # generator com [(51, 9), (73, 0), (17, 1), (89, 5), (38, 0), ....]

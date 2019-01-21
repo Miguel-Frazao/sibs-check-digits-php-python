@@ -10,7 +10,7 @@
  
 function generate_ref($ent, $ref_id, $val) {
 
-	if(!is_numeric($val) || $val > 1000000 || $val < 1)
+	if(!is_numeric($val) || $val > 99999.99 || $val < 1)
 		return ['error' => 1, 'message' => 'Valor a pagar inválido'];
 
 	$weights = [51, 73, 17, 89, 38, 62, 45, 53, 15, 50, 5, 49, 34, 81, 76, 27, 90, 9, 30, 3];
