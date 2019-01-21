@@ -19,7 +19,6 @@ function generate_ref($ent, $ref_id, $val) {
 	$val_tmp = str_pad(number_format($val, 2, "", ""), 8, '0', STR_PAD_LEFT);
 
 	$ctrl_num = $ent.$ref_id.$val_tmp; // concatenar os 3 parametros
-
 	if(strlen($ctrl_num) != 20)
 		return ['error' => 1, 'message' => 'comprimento do num de controlo errado'];
 

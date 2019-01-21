@@ -19,7 +19,6 @@ def generate_ref(ent, ref_id, val):
 		return {'error': 1, 'message': 'Valor a pagar inválido'}
 
 	ctrl_num = '{}{}{}'.format(ent, ref_id, val_tmp)
-
 	if(len(ctrl_num) != 20):
 		return {'error': 1, 'message': 'comprimento do num de controlo errado'}
 
