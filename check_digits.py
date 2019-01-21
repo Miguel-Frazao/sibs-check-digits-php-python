@@ -8,7 +8,7 @@
 '''
 
 def generate_ref(ent, ref_id, val):
-	weights = [51,73,17,89,38,62,45,53,15,50,5,49,34,81,76,27,90,9,30,3,10,1];
+	weights = [3, 30, 9, 90, 27, 76, 81, 34, 49, 5, 50, 15, 53, 45, 62, 38, 89, 17, 73, 51];
 
 	# obrigar a ter sempre duas casas decimais, ex para que 2.00 nao fique 2.0 mas sim 2.00
 	val_display = '{0:.2f}'.format(val)
@@ -24,8 +24,8 @@ def generate_ref(ent, ref_id, val):
 		return {'error': 1, 'message': 'comprimento do num de controlo errado'}
 
 	prods = 0;
-	for key, value in enumerate(ctrl_num):
-		prods += int(value) * weights[key]
+	for key, value in enumerate(reversed(weights)):
+		prods += int(ctrl_num[key]) * value # // produto do num na posicao x pelo correspondente nos $weights revertido
 
 	# obrigar a ter sempre dois digitos, colocar zero à esquerda se o resultado tiver apenas um digito
 	check_digits = str(98-(prods%97)).zfill(2)
