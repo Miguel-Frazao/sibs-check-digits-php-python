@@ -18,13 +18,13 @@ function generate_ref($ent, $ref_id, $val) {
 	// remover decimal e preencher com zeros a esquerda para que tenha 8 chars
 	$val_tmp = str_pad(number_format($val, 2, "", ""), 8, '0', STR_PAD_LEFT);
 
-	$ctrl_num = $ent.$ref_id.$val_tmp; // concatenar os 3 parametros
-	if(strlen($ctrl_num) != 20)
-		return ['error' => 1, 'message' => 'comprimento do num de controlo errado'];
+	$base_num = $ent.$ref_id.$val_tmp; // concatenar os 3 parametros
+	if(strlen($base_num) != 20)
+		return ['error' => 1, 'message' => 'comprimento do num base errado'];
 
 	$prods = 0;
 	for ($i = 0; $i < 20; $i++) {
-		$prods += substr($ctrl_num, $i, 1)*$weights[$i]; // produto do num na posicao x pelo correspondente nos $weights
+		$prods += substr($base_num, $i, 1)*$weights[$i]; // produto do num na posicao x pelo correspondente nos $weights
 	}
     
 	// obrigar a ter sempre dois digitos, colocar zero a esquerda se o resultado tiver apenas um digito

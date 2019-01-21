@@ -12,19 +12,18 @@ def generate_ref(ent, ref_id, val):
 	weights = [51, 73, 17, 89, 38, 62, 45, 53, 15, 50, 5, 49, 34, 81, 76, 27, 90, 9, 30, 3];
 
 	# obrigar a ter sempre duas casas decimais, ex para que 2.00 nao fique 2.0 mas sim 2.00
-	val_display = '{0:.2f}'.format(val)
+	val_display = '{:.2f}'.format(val)
 	# remover decimal e preencher com zeros à esquerda para que tenha 8 chars
 	val_tmp = val_display.replace('.', '').zfill(8)
-
 	if(not val_tmp.isnumeric() or 1  > val > 1000000):
 		return {'error': 1, 'message': 'Valor a pagar inválido'}
 
-	ctrl_num = '{}{}{}'.format(ent, ref_id, val_tmp)
-	if(len(ctrl_num) != 20):
+	base_num = '{}{}{}'.format(ent, ref_id, val_tmp)
+	if(len(base_num) != 20):
 		return {'error': 1, 'message': 'comprimento do num de controlo errado'}
 
 	prods = 0;
-	for val1, val2 in zip(weights, map(int, ctrl_num)): # generator com [(51, 9), (73, 0), (17, 1), (89, 5), (38, 0), ....]
+	for val1, val2 in zip(weights, map(int, base_num)): # generator com [(51, 9), (73, 0), (17, 1), (89, 5), (38, 0), ....]
 		prods += val1 * val2 # // produto do num na posicao x pelo correspondente nos weights
 
 	# obrigar a ter sempre dois digitos, colocar zero à esquerda se o resultado tiver apenas um dígito
