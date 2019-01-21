@@ -8,7 +8,8 @@
 '''
 
 def generate_ref(ent, ref_id, val):
-	weights = [3, 30, 9, 90, 27, 76, 81, 34, 49, 5, 50, 15, 53, 45, 62, 38, 89, 17, 73, 51];
+	weights = [51,73,17,89,38,62,45,53,15,50,5,49,34,81,76,27,90,9,30,3,10,1];
+	print(weights)
 
 	# obrigar a ter sempre duas casas decimais, ex para que 2.00 nao fique 2.0 mas sim 2.00
 	val_display = '{0:.2f}'.format(val)
@@ -31,7 +32,7 @@ def generate_ref(ent, ref_id, val):
 	ref = '{}{}'.format(ref_id, check_digits)
 	return {'error': 0, 'message': {'ENT': ent, 'VAL': val_display.replace('.', ','), 'REF':  ref}}
 
-ent = '90150';
-ref_id = '1231234';
-val = '432.11';
+ent = '11687';
+ref_id = '4854490';
+val = '421.00';
 print(generate_ref(ent, ref_id, float(val))); # {'message': {'REF': '123123451', 'ENT': '90150', 'VAL': '432,11'}, 'error': 0}
